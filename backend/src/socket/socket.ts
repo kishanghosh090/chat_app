@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { Server as SockerIOServer, Socket } from "socket.io";
 import jwt from "jsonwebtoken";
+import { registerUserEvents } from "./userEvents.ts";
 
 export function initializeSocket(server: any): SockerIOServer {
   const io = new SockerIOServer(server, {
@@ -31,8 +32,11 @@ export function initializeSocket(server: any): SockerIOServer {
 
   io.on("connection", async (socket: Socket) => {
     const userId = socket.data.userId;
-    console.log("user connected", userId, socket.data.name);
+    console.log("user connected", userId, socket.data, socket.id);
+
+
     // register the events
+    registerUserEvents(io, socket);
 
     io.on("disconnect", () => {
       console.log("user disconnected", userId);
