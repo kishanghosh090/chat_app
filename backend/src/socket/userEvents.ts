@@ -1,9 +1,9 @@
 import { Socket, Server as SocketIOServer } from "socket.io";
 
 export function registerUserEvents(io: SocketIOServer, socket: Socket) {
-  socket.on("testEvent", (data) => {
+  socket.on("testSocket", (data) => {
     console.log("Test event received:", data);
-    io.emit("testEventResponse", {
+    io.emit("testSocket", {
       message: "Test event processed",
       receivedData: data,
     });
