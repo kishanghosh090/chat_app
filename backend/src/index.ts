@@ -1,0 +1,26 @@
+import express from "express";
+import http from "http";
+import cors from "cors";
+import "dotenv/config";
+import connectDB from "./config/db.ts";
+
+const app = express();
+const PORT = process.env.PORT || 4002;
+app.use(express.json());
+app.use(cors());
+
+app.get("/", (req, res) => {
+  return res.json({ msg: "hello from chai aur code" });
+});
+
+const server = http.createServer(app);
+
+connectDB()
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`server is listing at PORT ${PORT}`);
+    });
+  })
+  .catch(() => {
+    process.exit(1);
+  });
