@@ -8,15 +8,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SplashScreen = () => {
   const router = useRouter();
-  useEffect(() => {
-    setTimeout(async () => {
-      if (!(await AsyncStorage.getItem("token"))) {
-        router.replace("/(main)/home");
-      }
+  // useEffect(() => {
+  //   setTimeout(async () => {
+  //     if (!(await AsyncStorage.getItem("token"))) {
+  //       router.replace("/(main)/home");
+  //     }
 
-      router.navigate("/(auth)/welcome");
-    }, 1500);
-  }, []);
+  //     router.navigate("/(auth)/welcome");
+  //   }, 1500);
+  // }, []);
   return (
     <View style={styles.container}>
       <StatusBar

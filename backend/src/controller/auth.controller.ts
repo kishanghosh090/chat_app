@@ -33,7 +33,7 @@ const register = async (req: Request, res: Response): Promise<void> => {
 };
 
 const login = async (req: Request, res: Response): Promise<void> => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     let user = await UserModel.findOne({ email });
