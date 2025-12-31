@@ -42,7 +42,7 @@ const Login = () => {
           <View style={styles.header}>
             <BackButton iconSize={22} />
             <Typo size={17} color={colors.white}>
-              Need some help?
+              Happy to see you
             </Typo>
           </View>
           <View style={styles.content}>
@@ -54,9 +54,7 @@ const Login = () => {
                 <Typo size={28} fontWeight={"600"}>
                   Getting started
                 </Typo>
-                <Typo color={colors.neutral600}>
-                  Create an account to continue
-                </Typo>
+                <Typo color={colors.neutral600}>Login your account</Typo>
               </View>
 
               <Input
