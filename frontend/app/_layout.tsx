@@ -1,0 +1,10 @@
+import { StyleSheet } from "react-native";
+import React from "react";
+import { Stack } from "expo-router";
+
+const WelcomeScreen = () => {
+  return <Stack screenOptions={{ headerShown: false }} />;
+};
+export default WelcomeScreen;
+
+const styles = StyleSheet.create({});
