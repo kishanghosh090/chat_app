@@ -1,5 +1,5 @@
 import { StatusBar, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import ScreenWrapper from "@/components/ScreenWraper";
 import Typo from "@/components/Typo";
 import { colors, spacingX, spacingY } from "@/constants/theme";
@@ -7,9 +7,15 @@ import { verticalScale } from "@/utils/styling";
 import Animated, { FadeIn } from "react-native-reanimated";
 import Button from "@/components/Button";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const WelcomeScreen = () => {
   const router = useRouter();
+  useEffect(() => {
+    if (!AsyncStorage.getItem("token")) {
+      router.replace("/(main)/home");
+    }
+  }, []);
 
   return (
     <ScreenWrapper showPattern={true} bgOpacity={0.5}>

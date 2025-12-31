@@ -1,11 +1,12 @@
 import ScreenWrapper from "@/components/ScreenWraper";
+import Typo from "@/components/Typo";
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 const home = () => {
   return (
     <ScreenWrapper>
-      <Text> textInComponent </Text>
+      <Typo>Home</Typo>
     </ScreenWrapper>
   );
 };

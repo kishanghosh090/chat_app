@@ -4,11 +4,16 @@ import React, { useEffect } from "react";
 import { colors } from "@/constants/theme";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SplashScreen = () => {
   const router = useRouter();
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(async () => {
+      if (!(await AsyncStorage.getItem("token"))) {
+        router.replace("/(main)/home");
+      }
+
       router.navigate("/(auth)/welcome");
     }, 1500);
   }, []);
