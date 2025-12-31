@@ -1,19 +1,38 @@
 import BackButton from "@/components/BackButton";
+import Button from "@/components/Button";
 import Input from "@/components/Input";
 import ScreenWrapper from "@/components/ScreenWraper";
 import Typo from "@/components/Typo";
 import { colors, radius, spacingX, spacingY } from "@/constants/theme";
-import React from "react";
+import { verticalScale } from "@/utils/styling";
+import { useRouter } from "expo-router";
+import * as Icons from "phosphor-react-native";
+import React, { useRef, useState } from "react";
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
 
 const register = () => {
+  const nameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  async function handleSubmit(): Promise<void> {
+    if (!emailRef.current || !passwordRef.current || nameRef.current) {
+      Alert.alert("Sign Up", "Please fill all the fields");
+      return;
+    }
+    //
+  }
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -41,7 +60,52 @@ const register = () => {
                 </Typo>
               </View>
 
-              <Input />
+              <Input
+                placeholder="Enter your name"
+                onChangeText={(val: string) => (nameRef.current = val)}
+                icon={
+                  <Icons.UserIcon
+                    size={verticalScale(26)}
+                    color={colors.neutral600}
+                  />
+                }
+              />
+              <Input
+                placeholder="Enter your Email"
+                onChangeText={(val: string) => (emailRef.current = val)}
+                icon={
+                  <Icons.AtIcon
+                    size={verticalScale(26)}
+                    color={colors.neutral600}
+                  />
+                }
+              />
+              <Input
+                placeholder="Enter your password"
+                secureTextEntry={true}
+                onChangeText={(val: string) => (passwordRef.current = val)}
+                icon={
+                  <Icons.LockIcon
+                    size={verticalScale(26)}
+                    color={colors.neutral600}
+                  />
+                }
+              />
+              <View style={{ marginTop: spacingY._25, gap: spacingY._15 }}>
+                <Button loading={isLoading} onPress={handleSubmit}>
+                  <Typo fontWeight={"bold"} color={colors.black} size={20}>
+                    Sign Up
+                  </Typo>
+                </Button>
+              </View>
+              <View style={styles.footer}>
+                <Typo>Already have an account?</Typo>
+                <Pressable onPress={() => router.push("/(auth)/Login")}>
+                  <Typo fontWeight={"bold"} color={colors.primaryDark}>
+                    Login
+                  </Typo>
+                </Pressable>
+              </View>
             </ScrollView>
           </View>
         </View>
