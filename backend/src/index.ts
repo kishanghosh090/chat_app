@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4002;
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/users", authRoutes);
+app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => {
   return res.json({ msg: "hello from chai aur code" });
 });
