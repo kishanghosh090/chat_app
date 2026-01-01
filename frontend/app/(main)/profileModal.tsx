@@ -1,14 +1,30 @@
+import BackButton from "@/components/BackButton";
+import Header from "@/components/Header";
 import ScreenWrapper from "@/components/ScreenWraper";
 import { colors, spacingX, spacingY } from "@/constants/theme";
 import { scale, verticalScale } from "@/utils/styling";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const profileModal = () => {
   return (
     <ScreenWrapper isModal={true}>
       <View style={styles.container}>
-        
+        <Header
+          title="Edit Profile"
+          leftIcon={
+            Platform.OS === "android" && (
+              <BackButton color={colors.neutral900} />
+            )
+          }
+          rightIcon={null}
+          style={{ marginVertical: spacingY._15 }}
+        />
+        <ScrollView contentContainerStyle={styles.form}>
+          <View style={styles.avatar}>
+            
+          </View>
+        </ScrollView>
       </View>
     </ScreenWrapper>
   );
